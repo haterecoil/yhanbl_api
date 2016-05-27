@@ -32,6 +32,22 @@ Une API simple.
 
 Deux ressources : Message et User
 
+Message :
+- string :title
+- text :text
+- datetime :sent_on
+- datetime :read_on
+- datetime :answered_on
+- belongs_to :user, :sender
+- belongs_to :user, :recipient
+- timestamps null: false
+
+User :
+- string :username
+- has_many :message, :sent_messages
+- has_many :message, :received_messages
+
+
 Routes :
 
   Prefix Verb   URI Pattern             Controller#Action
