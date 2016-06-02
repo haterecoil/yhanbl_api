@@ -101,5 +101,6 @@ Authorization: Token token="{le token sans les accolades la}", username="{le use
 - [x] /users/:id/all_messages : tous les messages de :user
 - [] /users/:id/received_messages/since/:timestamp  tous les messages reçus depuis un :timestamp
 - [x] /oauth/ Password Credentials Flow oAuth rails
-- []
+- [] image upload
+- [] better serializers
 
