@@ -85,15 +85,15 @@ Ce qui renvoie
     "username": "User0",
     "authentication_token": "vz/z64WkBYqzgnhIoJl2voqz2eqk4D+wgs4VpA8RTCrKIHyL0Z+dMjX2b1YJd9ga457bfbyPAPkuJZDJVH8Q6w=="
   }
-```
+``
 
 
 Et on se sert de l'authentication token pour chaque requête,
 en ajoutant dans le header des requêtes:
 
-
-  Authorization: Token token="{le token sans les accolades la}", username="{le user name sans les accolades)"
-
+```
+Authorization: Token token="{le token sans les accolades la}", username="{le user name sans les accolades)"
+```
 
 ##Todo
 
