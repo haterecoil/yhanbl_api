@@ -5,6 +5,10 @@ class Message < ActiveRecord::Base
   belongs_to :sender, class_name: "User"
   belongs_to :recipient, class_name: "User"
 
+  scope :for_user, -> (user) {
+    where(["sender_id = :user_id OR recipient_id = :user_id", {user_id: user.id}])
+  }
+
   private
 
     def add_recipient

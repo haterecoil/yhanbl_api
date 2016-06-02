@@ -64,12 +64,42 @@ Routes :
         PUT    /messages/:id(.:format) messages#update
         DELETE /messages/:id(.:format) messages#destroy
 
+*Authentification / Authorization*
+
+L'authentification se fait en envoyant :
+
+```
+# POST /sign_in
+{
+    "user" : {
+        "username" : "User0",
+        "password" : "aa"
+    }
+}
+```
+
+Ce qui renvoie
+
+```
+{
+  "id": 1,
+  "username": "User0",
+  "authentication_token": "vz/z64WkBYqzgnhIoJl2voqz2eqk4D+wgs4VpA8RTCrKIHyL0Z+dMjX2b1YJd9ga457bfbyPAPkuJZDJVH8Q6w=="
+}
+```
+
+Et on se sert de l'authentication token pour chaque requête,
+en ajoutant dans le header des requêtes:
+
+```
+Authorization: Token token="{le token sans les accolades la}", username="{le user name sans les accolades)"
+```
 
 ##Todo
 
-- [] /users/:id/friends ( sent to user ) : utilisateurs avec les quels :user a échangé
-- [] /users/:id/all_messages : tous les messages de :user
+- [x] /users/:id/friends ( sent to user ) : utilisateurs avec les quels :user a échangé
+- [x] /users/:id/all_messages : tous les messages de :user
 - [] /users/:id/received_messages/since/:timestamp  tous les messages reçus depuis un :timestamp
-- [] /oauth/ Password Credentials Flow oAuth rails
+- [x] /oauth/ Password Credentials Flow oAuth rails
 - []
 
