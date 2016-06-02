@@ -4,7 +4,11 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    @messages = policy_scope(Message)
+
+    @messages.each do |one_message|
+      one_message.read_on = DateTime.now if one_message.read_on == nil
+    end
 
     render json: @messages
   end
@@ -12,6 +16,7 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
+    authorize @message
     render json: @message
   end
 
@@ -19,6 +24,9 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
+    @message.sender = @current_user
+
+    authorize @message
 
     if @message.save
       render json: @message, status: :created, location: @message
@@ -32,6 +40,8 @@ class MessagesController < ApplicationController
   def update
     @message = Message.find(params[:id])
 
+    authorize @message
+
     if @message.update(message_params)
       head :no_content
     else
@@ -42,6 +52,7 @@ class MessagesController < ApplicationController
   # DELETE /messages/1
   # DELETE /messages/1.json
   def destroy
+    authorize @message
     @message.destroy
 
     head :no_content
@@ -49,11 +60,15 @@ class MessagesController < ApplicationController
 
   private
 
+    def pundit_user
+      @current_user
+    end
+
     def set_message
       @message = Message.find(params[:id])
     end
 
     def message_params
-      params.require(:message).permit(:title, :text, :sent_on, :read_on, :answered_on)
+      params.require(:message).permit(:title, :text)
     end
 end

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    authorize @users
 
     render json: @users
   end
@@ -12,6 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    authorize @user
     render json: @user
   end
 
@@ -19,6 +21,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(new_user_params)
+    authorize @user
 
     if @user.save
       render json: @user, status: :created, location: @user
@@ -31,6 +34,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     @user = User.find(params[:id])
+    authorize @user
 
     if @user.update(user_params)
       head :no_content
@@ -42,6 +46,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    authorize @user
     @user.destroy
 
     head :no_content
@@ -50,12 +55,17 @@ class UsersController < ApplicationController
   # GET /users/1/friends
   def get_friends
     @user = User.find(params[:id])
+    authorize @user
     @users = User.friends_of(@user)
 
     render json: @users
   end
 
   private
+
+    def pundit_user
+      @current_user
+    end
 
     def set_user
       @user = User.find(params[:id])

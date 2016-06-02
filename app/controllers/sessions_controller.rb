@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class SessionsController < ActionController::API
 
   # GET /sessions/1
   def create

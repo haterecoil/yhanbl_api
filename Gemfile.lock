@@ -43,6 +43,7 @@ GEM
     arel (6.0.3)
     bcrypt (3.1.11)
     builder (3.2.2)
+    byebug (9.0.4)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
     erubis (2.7.0)
@@ -68,6 +69,8 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -120,7 +123,9 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.0.rc2)
   bcrypt (~> 3.1.7)
+  byebug
   pry-rails
+  pundit
   rails (= 4.2.6)
   rails-api
   spring
