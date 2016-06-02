@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+
+  before_create :generate_authentication_token
+  has_secure_password
+
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"
 
@@ -8,6 +12,13 @@ class User < ActiveRecord::Base
         .where(["users.id != ? AND (messages.recipient_id = ? OR messages.sender_id = ?)", user.id, user.id, user.id])
         .group(:id)
   }
+
+  def generate_authentication_token
+    loop do
+      self.authentication_token = SecureRandom.base64(64)
+      break unless User.find_by(authentication_token: authentication_token)
+    end
+  end
 
   # SELECT users.username, users.id, messages.title, messages.sender_id, messages.recipient_id from users
   # INNER JOIN messages

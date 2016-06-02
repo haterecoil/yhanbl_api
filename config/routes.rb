@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get "/users/:id/friends" => "users#get_friends"
 
+  post "/sign_in" => "sessions#create"
+
   resources :users, except: [:new, :edit]
   resources :messages, except: [:new, :edit]
   # The priority is based upon order of creation: first created -> highest priority.
