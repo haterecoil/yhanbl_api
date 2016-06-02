@@ -47,6 +47,14 @@ class UsersController < ApplicationController
     head :no_content
   end
 
+  # GET /users/1/friends
+  def get_friends
+    @user = User.find(params[:id])
+    @users = User.friends_of(@user)
+
+    render json: @users
+  end
+
   private
 
     def set_user

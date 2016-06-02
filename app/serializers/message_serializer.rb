@@ -5,6 +5,8 @@ class MessageSerializer < ActiveModel::Serializer
       :sent_on,
       :read_on,
       :answered_on,
-      :sent_messages,
-      :received_messages
+      :sender,
+      :recipient
+      #:sent_messages,
+      #:received_messages
 end

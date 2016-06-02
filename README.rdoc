@@ -1,12 +1,12 @@
 == README
 
-# YHANBL :D
+#YHANBL :D
 
 Une API simple.
 
 
 
-## Installation
+##Installation
 
 *Pré requis :*
 
@@ -28,7 +28,7 @@ Une API simple.
 
   rails s
 
-## Structure
+##Structure
 
 Deux ressources : Message et User
 
@@ -63,4 +63,13 @@ Routes :
         PATCH  /messages/:id(.:format) messages#update
         PUT    /messages/:id(.:format) messages#update
         DELETE /messages/:id(.:format) messages#destroy
+
+
+##Todo
+
+- [] /users/:id/friends ( sent to user ) : utilisateurs avec les quels :user a échangé
+- [] /users/:id/all_messages : tous les messages de :user
+- [] /users/:id/received_messages/since/:timestamp  tous les messages reçus depuis un :timestamp
+- [] /oauth/ Password Credentials Flow oAuth rails
+- []
 
