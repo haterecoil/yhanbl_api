@@ -9,7 +9,9 @@ gem 'spring', :group => :development
 gem 'byebug', :group => :development
 gem 'pry-rails', :group => :development
 
-gem 'sqlite3'
+gem 'sqlite3', :groupe => :development
+
+gem 'pg'
 
 gem 'active_model_serializers', '~> 0.10.0.rc2'
 
