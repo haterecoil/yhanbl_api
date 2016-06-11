@@ -15,18 +15,24 @@ Une API simple.
 
 *Installation :*
 
+```bash
   git clone https://github.com/haterecoil/yhanbl_api.git
   cd yhanbl_api
   bundle install
+```
 
 *Database :*
 
+```bash
   bin/rake db:setup
   bin/rake db:seed
+```
 
 *Lancer le serveur :*
 
+```bash
   rails s
+```
 
 ##Structure
 
