@@ -76,7 +76,7 @@ messages GET    /messages(.:format)          messages#index
 
 *Authentification / Authorization*
 
-L'authentification se fait en envoyant :
+*L'authentification* se fait en envoyant :
 
 ```
 # POST /sign_in
@@ -97,12 +97,14 @@ Ce qui renvoie
   }
 ```
 
+*Authorization ?*
 
-Et on se sert de l'authentication token pour chaque requête,
+On se sert de l'authentication token pour chaque requête,
 en ajoutant dans le header des requêtes:
 
-
+```bash
   Authorization: Token token="{le token sans les accolades la}", username="{le user name sans les accolades)"
+```
 
 
 ##Todo
