@@ -56,19 +56,23 @@ User :
 
 Routes :
 
-  Prefix Verb   URI Pattern             Controller#Action
-  users GET    /users(.:format)        users#index
-        POST   /users(.:format)        users#create
-  user  GET    /users/:id(.:format)    users#show
-        PATCH  /users/:id(.:format)    users#update
-        PUT    /users/:id(.:format)    users#update
-        DELETE /users/:id(.:format)    users#destroy
-  messages GET /messages(.:format)     messages#index
-        POST   /messages(.:format)     messages#create
-  message GET  /messages/:id(.:format) messages#show
-        PATCH  /messages/:id(.:format) messages#update
-        PUT    /messages/:id(.:format) messages#update
-        DELETE /messages/:id(.:format) messages#destroy
+```bash
+  Prefix Verb   URI Pattern                  Controller#Action
+         GET    /users/:id/friends(.:format) users#get_friends
+ sign_in POST   /sign_in(.:format)           sessions#create
+   users GET    /users(.:format)             users#index
+         POST   /users(.:format)             users#create
+    user GET    /users/:id(.:format)         users#show
+         PATCH  /users/:id(.:format)         users#update
+         PUT    /users/:id(.:format)         users#update
+         DELETE /users/:id(.:format)         users#destroy
+messages GET    /messages(.:format)          messages#index
+         POST   /messages(.:format)          messages#create
+ message GET    /messages/:id(.:format)      messages#show
+         PATCH  /messages/:id(.:format)      messages#update
+         PUT    /messages/:id(.:format)      messages#update
+         DELETE /messages/:id(.:format)      messages#destroy
+```
 
 *Authentification / Authorization*
 
@@ -105,7 +109,7 @@ en ajoutant dans le header des requêtes:
 
 - [x] /users/:id/friends ( sent to user ) : utilisateurs avec les quels :user a échangé
 - [x] /users/:id/all_messages : tous les messages de :user
-- [] /users/:id/received_messages/since/:timestamp  tous les messages reçus depuis un :timestamp
+- [ ] /users/:id/received_messages/since/:timestamp  tous les messages reçus depuis un :timestamp
 - [x] /oauth/ Password Credentials Flow oAuth rails
-- []
+- [ ]
 
