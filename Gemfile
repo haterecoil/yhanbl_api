@@ -9,7 +9,7 @@ gem 'spring', :group => :development
 gem 'byebug', :group => :development
 gem 'pry-rails', :group => :development
 
-gem 'sqlite3', :groupe => :development
+gem 'sqlite3', :group => :development
 
 gem 'pg'
 
