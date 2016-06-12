@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, except: [:create]
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
@@ -22,6 +23,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(new_user_params)
     authorize @user
+
+    if (@user.password_confirmation.nil?)
+      @user.password_confirmation = @user.password
+    end
 
     if @user.save
       render json: @user, status: :created, location: @user
