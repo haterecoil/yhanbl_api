@@ -12,6 +12,7 @@ gem 'pry-rails', :group => :development
 gem 'sqlite3'
 
 #gem 'mysql2'
+#gem 'postgre'
 
 gem 'active_model_serializers', '~> 0.10.0.rc2'
 
