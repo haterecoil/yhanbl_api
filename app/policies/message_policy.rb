@@ -23,6 +23,11 @@ class MessagePolicy < ApplicationPolicy
     create?
   end
 
+  def set_read_messages?
+    return true if user.is_admin
+    scope.where(id: record.id).exists?
+  end
+
   def update?
     return true if user.is_admin
     scope.where(id: record.id).exists?

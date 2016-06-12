@@ -8,12 +8,48 @@ class MessagesController < ApplicationController
   def index
     @messages = policy_scope(Message)
 
-    @messages.each do |one_message|
-      one_message.read_on = DateTime.now if one_message.read_on == nil
+    render json: @messages
+  end
+
+  # GET /messages/new
+  # GET /messages/new.json
+  def get_new_messages
+    @messages = policy_scope(Message);
+
+    @messages = @messages.select do |om|
+      om.read_on.nil?
     end
 
     render json: @messages
   end
+
+  # PUT /messages/set_read_date
+  def set_read_messages
+    obj = params["read_messages"]
+
+    if (obj.class != Array)
+      render json: obj, status: :bad_request
+      return
+    end
+
+    messages = [];
+
+    obj.each do |id|
+      message = Message.find(id);
+      authorize message
+      message.read_on = DateTime.now
+
+      if message.save!
+        messages.push(message)
+      else
+        render json: message.errors, status: :internal_server_error
+        return
+      end
+    end
+
+    render json: @messages, status: :accepted
+  end
+
 
   # GET /messages/1
   # GET /messages/1.json
@@ -114,3 +150,6 @@ class MessagesController < ApplicationController
       end
     end
 end
+
+
+

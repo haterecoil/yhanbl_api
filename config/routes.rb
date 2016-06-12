@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
-  get "/users/:id/friends" => "users#get_friends"
+  get   "/users/:id/friends" => "users#get_friends"
 
-  post "/sign_in" => "sessions#create"
+  post  "/sign_in"           => "sessions#create"
+
+  get   "/messages/new"      => "messages#get_new_messages"
+  put   "/messages/set_read" => "messages#set_read_messages"
 
   resources :users, except: [:new, :edit]
   resources :messages, except: [:new, :edit]
