@@ -4,7 +4,8 @@ class MessageSerializer < ActiveModel::Serializer
       :text,
       :sent_on,
       :read_on,
-      :answered_on
+      :answered_on,
+      :picture
 
   has_one :recipient
   has_one :sender

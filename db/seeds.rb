@@ -18,9 +18,10 @@ for i in 0..3 do
     password_confirmation: password
     })
   users.push(u)
-  u.save
+  puts u.username + " " + u.save.to_s
 end
 users.last.update(is_admin: true)
+
 
 
 messages = []
@@ -28,15 +29,19 @@ for i in 0..5 do
   title = 'Message ' + i.to_s
   text = 'Message in the '+i.to_s+' bottle'
   sender = users[i%3]
-  recipient = users[(i+1)%3]
-  messages.push(Message.create({
+
+  m = Message.new({
     title: title,
     text: text,
     sent_on: Time.now,
     read_on: nil,
     answered_on: nil,
-    sender: sender,
-    recipient: recipient
-    }))
+    sender: sender
+    })
+
+  m.picture = File.open("/Users/mrgn/Desktop/nic_ca10.jpg")
+
+  messages.push(m)
+  puts m.title + " " + m.save!.to_s
 end
 
