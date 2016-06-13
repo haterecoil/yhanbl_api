@@ -68,8 +68,7 @@ class MessagePolicy < ApplicationPolicy
       if user.is_admin?
         scope.all
       elsif user
-        scope.where(["sender_id = :user_id OR recipient_id = :user_id", {user_id: user.id}])
-            .where(rejected_on: nil)
+        scope.where(["sender_id = :user_id OR recipient_id = :user_id AND rejected_on = NULL", {user_id: user.id}])
       else
         scope.none
       end

@@ -46,4 +46,3 @@ for i in 0..5 do
   messages.push(m)
   puts m.title + " " + m.save!.to_s
 end
-
