@@ -28,6 +28,11 @@ class MessagePolicy < ApplicationPolicy
     scope.where(id: record.id).exists?
   end
 
+  def set_rejected_messages?
+    return true if user.is_admin
+    scope.where(id: record.id).exists?
+  end
+
   def update?
     return true if user.is_admin
     scope.where(id: record.id).exists?
@@ -64,6 +69,7 @@ class MessagePolicy < ApplicationPolicy
         scope.all
       elsif user
         scope.where(["sender_id = :user_id OR recipient_id = :user_id", {user_id: user.id}])
+            .where(rejected_on: nil)
       else
         scope.none
       end

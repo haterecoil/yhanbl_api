@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   post  "/sign_in"           => "sessions#create"
 
   get   "/messages/new"      => "messages#get_new_messages"
-  put   "/messages/set_read" => "messages#set_read_messages"
+
+  put   "/messages/set_received"  => "messages#set_received_messages"
+  put   "/messages/set_rejected"  => "messages#set_rejected_messages"
+
+  put   "/mesages/:id/open"    => "messages#set_as_opened"
 
   resources :users, except: [:new, :edit]
   resources :messages, except: [:new, :edit]

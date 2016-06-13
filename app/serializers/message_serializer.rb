@@ -3,8 +3,10 @@ class MessageSerializer < ActiveModel::Serializer
       :title,
       :text,
       :sent_on,
-      :read_on,
+      :received_on,
+      :opened_on,
       :answered_on,
+      :rejected_on,
       :picture
 
   has_one :recipient

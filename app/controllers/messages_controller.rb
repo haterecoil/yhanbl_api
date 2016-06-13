@@ -17,15 +17,15 @@ class MessagesController < ApplicationController
     @messages = policy_scope(Message);
 
     @messages = @messages.select do |om|
-      om.read_on.nil?
+      om.received_on.nil?
     end
 
     render json: @messages
   end
 
-  # PUT /messages/set_read_date
-  def set_read_messages
-    obj = params["read_messages"]
+  # PUT /messages/set_received_date
+  def set_received_messages
+    obj = params["received_messages"]
 
     if (obj.class != Array)
       render json: obj, status: :bad_request
@@ -37,7 +37,7 @@ class MessagesController < ApplicationController
     obj.each do |id|
       message = Message.find(id);
       authorize message
-      message.read_on = DateTime.now
+      message.received_on = DateTime.now
 
       if message.save!
         messages.push(message)
@@ -48,6 +48,46 @@ class MessagesController < ApplicationController
     end
 
     render json: @messages, status: :accepted
+  end
+
+  # PUT /messages/set_rejected_date
+  def set_rejected_messages
+    obj = params["rejected_messages"]
+
+    if (obj.class != Array)
+      render json: obj, status: :bad_request
+      return
+    end
+
+    messages = [];
+
+    obj.each do |id|
+      message = Message.find(id);
+      authorize message
+      message.rejected_on = DateTime.now
+
+      if message.save!
+        messages.push(message)
+      else
+        render json: message.errors, status: :internal_server_error
+        return
+      end
+    end
+
+    render json: @messages, status: :accepted
+  end
+
+  # PUT /messages/:id/open
+  def set_as_opened
+    authorize @message
+    @message.opened_on = DateTime.now
+
+    if message.save!
+        render json: message.errors, status: :accepted
+      else
+        render json: message.errors, status: :internal_server_error
+        return
+      end
   end
 
 

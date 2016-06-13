@@ -4,7 +4,7 @@ class CreateMessages < ActiveRecord::Migration
       t.string :title
       t.text :text
       t.datetime :sent_on
-      t.datetime :read_on
+      t.datetime :received_on
       t.datetime :answered_on
 
       t.references :sender

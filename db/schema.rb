@@ -11,19 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160612201840) do
+ActiveRecord::Schema.define(version: 20160613000205) do
 
   create_table "messages", force: :cascade do |t|
     t.string   "title"
     t.text     "text"
     t.datetime "sent_on"
-    t.datetime "read_on"
+    t.datetime "received_on"
     t.datetime "answered_on"
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "picture"
+    t.datetime "rejected_on"
+    t.datetime "opened_on"
   end
 
   create_table "users", force: :cascade do |t|

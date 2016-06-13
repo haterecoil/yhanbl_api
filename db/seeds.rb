@@ -34,7 +34,9 @@ for i in 0..5 do
     title: title,
     text: text,
     sent_on: Time.now,
-    read_on: nil,
+    opened_on: nil,
+    received_on: nil,
+    rejected_on: nil,
     answered_on: nil,
     sender: sender
     })
