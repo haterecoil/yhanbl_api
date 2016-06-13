@@ -41,7 +41,7 @@ for i in 0..5 do
     sender: sender
     })
 
-  m.picture = File.open("/Users/mrgn/Desktop/nic_ca10.jpg")
+  m.picture = Rails.root.join("public/ncage.jpg").open
 
   messages.push(m)
   puts m.title + " " + m.save!.to_s
