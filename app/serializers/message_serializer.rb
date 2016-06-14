@@ -12,6 +12,10 @@ class MessageSerializer < ActiveModel::Serializer
   has_one :recipient
   has_one :sender
 
+  def picture
+    object.picture.url
+  end
+
   def recipient
       # return object.recipient if @current_user.is_admin?
       attributes["recipient"] = {"username" => object.recipient.username, "id" => object.recipient.id}
