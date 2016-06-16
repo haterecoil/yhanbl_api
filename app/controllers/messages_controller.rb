@@ -83,7 +83,7 @@ class MessagesController < ApplicationController
     authorize @message
     @message.opened_on = true
 
-    if message.save!
+    if @message.save!
         render json: message.errors, status: :accepted
       else
         render json: message.errors, status: :internal_server_error
