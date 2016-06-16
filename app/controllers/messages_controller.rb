@@ -121,7 +121,7 @@ class MessagesController < ApplicationController
 
     authorize @message
 
-    if @message.update(message_params)
+    if @message.update(upload_params)
       head :no_content
     else
       render json: @message.errors, status: :unprocessable_entity
