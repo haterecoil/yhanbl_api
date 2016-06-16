@@ -79,6 +79,7 @@ class MessagesController < ApplicationController
 
   # PUT /messages/:id/open
   def set_as_opened
+    @message = Message.find(params[:id])
     authorize @message
     @message.opened_on = true
 
