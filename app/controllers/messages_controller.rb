@@ -80,7 +80,7 @@ class MessagesController < ApplicationController
   # PUT /messages/:id/open
   def set_as_opened
     authorize @message
-    @message.opened_on = DateTime.now
+    @message.opened_on = true
 
     if message.save!
         render json: message.errors, status: :accepted
