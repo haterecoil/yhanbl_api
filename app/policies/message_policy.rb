@@ -32,6 +32,10 @@ class MessagePolicy < ApplicationPolicy
     return true if user.is_admin
     scope.where(id: record.id).exists?
   end
+  def set_as_opened?
+    return true if user.is_admin
+    scope.where(id: record.id).exists?
+  end
 
   def update?
     return true if user.is_admin

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   put   "/messages/set_received"  => "messages#set_received_messages"
   put   "/messages/set_rejected"  => "messages#set_rejected_messages"
 
-  put   "/mesages/:id/open"    => "messages#set_as_opened"
+  put   "/messages/:id/open"    => "messages#set_as_opened"
 
   resources :users, except: [:new, :edit]
   resources :messages, except: [:new, :edit]
