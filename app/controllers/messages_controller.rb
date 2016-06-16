@@ -84,9 +84,9 @@ class MessagesController < ApplicationController
     @message.opened_on = true
 
     if @message.save!
-        render json: message.errors, status: :accepted
+        render json: @message.errors, status: :accepted
       else
-        render json: message.errors, status: :internal_server_error
+        render json: @message.errors, status: :internal_server_error
         return
       end
   end
